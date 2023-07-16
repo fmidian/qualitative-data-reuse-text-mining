@@ -88,6 +88,7 @@ def remove_speakers_and_meta_content_in_transcript_itself(interviews):
     #download model: python -m spacy download en_core_web_trf
     nlp_interviews = []
     i = 0
+    
     for interview in interviews:
         nlp_segments = []
         for segment in interview:

@@ -48,9 +48,10 @@ def load_data(number_of_words_in_unit, onlyInterviewee, full_text):
                     segments.append((segment["continuous_text"], segment["interview_number"]))
                 else:
                     segments.append(" ".join(segment["list_of_words"]))
-                    mallet.print_dataset_stats(segments)
+                    #mallet.print_dataset_stats(segments)
 
         print(len(segments))
+        print("ready")
         return segments
 
 def train_topic_model():
@@ -213,7 +214,22 @@ def train_topic_model():
     df.to_excel("evaluation"+str(now)[:20]+".xlsx")
 
 if __name__ == "__main__":
-    train_topic_model()
+    with open("interviews_for_topic_modeling.txt", "rb") as fp:   # Unpickling
+            interviews_from_prepr = pickle.load(fp)
+
+    interview_number = 2
+    segment_number = 10
+
+    print("Interview ", interview_number)
+    print(interviews_from_prepr[interview_number])
+    # for interview in interviews_from_prepr:
+    #     for segment in interview:
+    #         if full_text:
+    #             segments.append((segment["continuous_text"], segment["interview_number"]))
+    #         else:
+    #             segments.append(" ".join(segment["list_of_words"]))
+    print("end")
+    #train_topic_model()
 
             #mögliches todo (prio mittel) mit mallet topic modeling: Verlauf im Durchschnitt innheralb eines Interviews der Topics
             #mögliches todo (prio niedrig) mit mallet topic modeling: label interviewer interviewee ausnutzen und unterschiede in den topics anzeigen
